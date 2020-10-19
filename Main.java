@@ -6,6 +6,8 @@ class Main {
 
         System.out.println(String.format("Liczba osób: %d", peopleStats.count()));
 
+        System.out.println(String.format("Liczba osób z unikalnymi nazwiskami: %d", peopleStats.countUniqueLastNames()));
+
         System.out.println("Hello world");
     }
 }
@@ -25,6 +27,12 @@ class PeopleStats {
     }
     public long count() {
         return people.size();
+    }
+    public long countUniqueLastNames() {
+        return people.stream()
+                .map(Person::getLastName)
+                .distinct()
+                .count();
     }
 }
 
